@@ -144,43 +144,43 @@ class House extends React.Component {
             <div>
                 {type === 'house' ? 
                     (<div>
-                        <div>
-                            <b>Name:</b>{info.name}
+                        <div className='info-row'>
+                            ><b>Name: </b><span>{info.name}</span>
                         </div>
                         {info.region ? 
-                            (<div>
-                                <b>Region:</b>{info.region}
+                            (<div className='info-row'>
+                                ><b>Region: </b><span>{info.region}</span>
                             </div>) 
                         : ''}
                         {info.coatOfArms ? 
-                            (<div>
-                                <b>Coat of Arms:</b>{info.coatOfArms}
+                            (<div className='info-row'>
+                                ><b>Coat of Arms: </b><span>{info.coatOfArms}</span>
                             </div>) 
                         : ''}
                         {info.words ? 
-                            (<div>
-                                <b>Words:</b>{info.words}
+                            (<div className='info-row'>
+                                ><b>Words: </b><span>{info.words}</span>
                             </div>) 
                         : ''}
                         {info.titles[0] !== '' ? 
-                            (<div>
-                                <b>Titles:</b>
+                            (<div className='info-row'>
+                                ><b>Titles: </b>
                                 {info.titles.map((title) => (
-                                    <span>{title}, </span>
+                                    <span>{title}</span>
                                 ))}
                             </div>) 
                         : ''}
                         {info.seats[0] !== '' ? 
-                            (<div>
-                                <b>Seats:</b>
+                            (<div className='info-row'>
+                                ><b>Seats: </b>
                                 {info.seats.map((seat) => (
                                     <span>{seat}, </span>
                                 ))}
                             </div>) 
                         : ''}
                         {currentLord ? 
-                            (<div>
-                                <b>Current Lord:</b>
+                            (<div className='info-row'>
+                                ><b>Current Lord: </b>
                                 {currentLord.map((c) => (
                                     <button name='character' value={c.url} onClick={this.handleBtnClick}>
                                         {c.name}
@@ -189,8 +189,8 @@ class House extends React.Component {
                             </div>) 
                         : ''}
                         {heir ? 
-                            (<div>
-                                <b>Heir:</b>
+                            (<div className='info-row'>
+                                ><b>Heir: </b>
                                 {heir.map((h) => (
                                     <button name='character' value={h.url} onClick={this.handleBtnClick}>
                                         {h.name}
@@ -199,8 +199,8 @@ class House extends React.Component {
                             </div>) 
                         : ''}
                         {overlord ? 
-                            (<div>
-                                <b>Overlord:</b>
+                            (<div className='info-row'>
+                                ><b>Overlord: </b>
                                 {overlord.map((o) => (
                                     <button name='house' value={o.url} onClick={this.handleBtnClick}>
                                         {o.name}
@@ -209,13 +209,13 @@ class House extends React.Component {
                             </div>) 
                         : ''}
                         {info.founded ? 
-                            (<div>
-                                <b>Founded:</b>{info.founded}
+                            (<div className='info-row'>
+                                ><b>Founded: </b><span>{info.founded}</span>
                             </div>) 
                         : ''}
                         {founder ? 
-                            (<div>
-                                <b>Founder:</b>
+                            (<div className='info-row'>
+                                ><b>Founder: </b>
                                 {founder.map((f) => (
                                     <button name='character' value={f.url} onClick={this.handleBtnClick}>
                                         {f.name}
@@ -224,21 +224,21 @@ class House extends React.Component {
                             </div>) 
                         : ''}
                         {info.diedOut ? 
-                            (<div>
-                                <b>Died out:</b>{info.diedOut}
+                            (<div className='info-row'>
+                                ><b>Died out: </b><span>{info.diedOut}</span>
                             </div>) 
                         : ''}
                         {info.ancestralWeapons[0] !== '' ? 
-                            (<div>
-                                <b>Ancestral Weapons:</b>
+                            (<div className='info-row'>
+                                ><b>Ancestral Weapons: </b>
                                 {info.ancestralWeapons.map((weapon) => (
                                     <span>{weapon}, </span>
                                 ))}
                             </div>) 
                         : ''}
                         {cadetBranches.length > 0 ? 
-                            (<div>
-                                <b>Cadet Branches:</b>
+                            (<div className='info-row'>
+                                ><b>Cadet Branches: </b>
                                 {cadetBranches.map((cadetBranch) => (
                                     <button name='house' value={cadetBranch.url} onClick={this.handleBtnClick}>
                                         {cadetBranch.name}
@@ -247,8 +247,8 @@ class House extends React.Component {
                             </div>) 
                         : ''}
                         {swornMembers.length > 0 ? 
-                            (<div>
-                                <b>Sworn Members:</b>
+                            (<div className='info-row'>
+                                ><b>Sworn Members:</b>
                                 {swornMembers.map((swornMember) => (
                                     <button name='character' value={swornMember.url} onClick={this.handleBtnClick}>
                                         {swornMember.name}

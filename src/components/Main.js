@@ -88,6 +88,7 @@ class Main extends React.Component {
 
     render() {
         const { searchText, currentInfo, filteredBooks, filteredCharacters, filteredHouses, type } = this.state;
+        console.log(type);
         return (
             <div>
                 <div className='search-bar'>
@@ -95,65 +96,74 @@ class Main extends React.Component {
                         type='text'
                         value={searchText}
                         name='searchText'
-                        placeholder='Search by House/Character/Book name'
+                        placeholder='Filter House/Character/Book name'
                         onChange={this.handleSearchTextChange}
                     />
                 </div>
                 <div id='cols'>
                     <div id='grid'>
                         <div className='grid-col'>
-                            <h3>Houses</h3>
-                            <div className='scroll'>
-                                <ul>
-                                    {filteredHouses.map((house) => (
-                                        <li key={house.name}><button name='house' value={house.url} onClick={this.handleBtnClick}>{house.name}</button></li>
-                                    ))}
-                                </ul>
-                            </div>
+                            <fieldset>
+                                <legend><h3>Houses</h3></legend>
+                                <div className='scroll'>
+                                    <ul>
+                                        {filteredHouses.map((house) => (
+                                            <li key={house.name}><button name='house' value={house.url} onClick={this.handleBtnClick}>{house.name}</button></li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </fieldset>
                         </div>
                         <div className='grid-col'>
-                            <h3>Characters</h3>
-                            <div className='scroll'>
-                                <ul>
-                                    {filteredCharacters.map((character) => (
-                                        <li key={character.url}>
-                                            <button name='character' value={character.url} onClick={this.handleBtnClick}>
-                                                {character.name ? character.name : character.aliases[0]}
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                            <fieldset>
+                                <legend><h3>Characters</h3></legend>
+                                <div className='scroll'>
+                                    <ul>
+                                        {filteredCharacters.map((character) => (
+                                            <li key={character.url}>
+                                                <button name='character' value={character.url} onClick={this.handleBtnClick}>
+                                                    {character.name ? character.name : character.aliases[0]}
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </fieldset>
                         </div>
                         <div className='grid-col'>
-                            <h3>Books</h3>
-                            <div className='scroll'>
-                                <ul>
-                                    {filteredBooks.map((book) => (
-                                        <li key={book.name}>
-                                            <button name='book' value={book.url} onClick={this.handleBtnClick}>
-                                                {book.name}
-                                            </button>        
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                            <fieldset>
+                                <legend><h3>Books</h3></legend>
+                                <div className='scroll'>
+                                    <ul>
+                                        {filteredBooks.map((book) => (
+                                            <li key={book.name}>
+                                                <button name='book' value={book.url} onClick={this.handleBtnClick}>
+                                                    {book.name}
+                                                </button>        
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
-                    <div id='info'>
-                        {currentInfo && type === 'house' ?
-                            <House data = {currentInfo} type = {type} />
-                            : ''
-                        }
-                        {currentInfo && type === 'character' ?
-                            <Character data = {currentInfo} type = {type} />
-                            : ''
-                        }
-                        {currentInfo && type === 'book' ?
-                            <Book data = {currentInfo} type = {type} />
-                            : ''
-                        }
-                    </div>
+                    {type ? 
+                        (<div id='info'>
+                            {currentInfo && type === 'house' ?
+                                <House data = {currentInfo} type = {type} />
+                                : ''
+                            }
+                            {currentInfo && type === 'character' ?
+                                <Character data = {currentInfo} type = {type} />
+                                : ''
+                            }
+                            {currentInfo && type === 'book' ?
+                                <Book data = {currentInfo} type = {type} />
+                                : ''
+                            }
+                        </div>) 
+                        : <h2> Select a House/Character/Book</h2>
+                    }
                 </div>
             </div>
         );

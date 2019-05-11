@@ -79,50 +79,50 @@ class Book extends React.Component {
             <div>
                 {type === 'book' ?
                     (<div>
-                        <div>
-                            <b>Name:</b>{info.name}
+                        <div className='info-row'>
+                            ><b>Name: </b>{info.name}
                         </div>
                         {info.isbn ? 
-                            (<div>
-                                <b>Isbn:</b>{info.isbn}
+                            (<div className='info-row'>
+                                ><b>ISBN: </b>{info.isbn}
                             </div>) 
                         : ''}
                         {info.authors[0] !== '' ? 
-                            (<div>
-                                <b>Authors:</b>
+                            (<div className='info-row'>
+                                ><b>Authors: </b>
                                 {info.authors.map((author) => (
                                     <span>{author}, </span>
                                 ))}
                             </div>) 
                         : ''}
                         {info.numberOfPages ? 
-                            (<div>
-                                <b>Number of Pages:</b>{info.numberOfPages}
+                            (<div className='info-row'>
+                                ><b>Number of Pages: </b>{info.numberOfPages}
                             </div>) 
                         : ''}
                         {info.publisher ? 
-                            (<div>
-                                <b>Publisher:</b>{info.publisher}
+                            (<div className='info-row'>
+                                ><b>Publisher: </b>{info.publisher}
                             </div>) 
                         : ''}
                         {info.country ? 
-                            (<div>
-                                <b>Country:</b>{info.country}
+                            (<div className='info-row'>
+                                ><b>Country: </b>{info.country}
                             </div>) 
                         : ''}
                         {info.mediaType ? 
-                            (<div>
-                                <b>Media Type:</b>{info.mediaType}
+                            (<div className='info-row'>
+                                ><b>Media Type: </b>{info.mediaType}
                             </div>) 
                         : ''}
                         {info.released ? 
-                            (<div>
-                                <b>Release:</b>{info.released}
+                            (<div className='info-row'>
+                                ><b>Release: </b>{info.released}
                             </div>) 
                         : ''}
                         {characters.length > 0 ? 
-                            (<div>
-                                <b>Characters:</b>
+                            (<div className='info-row'>
+                                ><b>Characters: </b>
                                 {characters.map((char) => (
                                     <button name='character' value={char.url} onClick={this.handleBtnClick}>
                                         {char.name}
@@ -131,8 +131,8 @@ class Book extends React.Component {
                             </div>) 
                         : ''}
                         {povCharacters.length > 0 ? 
-                            (<div>
-                                <b>Pov Characters:</b>
+                            (<div className='info-row'>
+                                ><b>Pov Characters: </b>
                                 {povCharacters.map((povChar) => (
                                     <button name='character' value={povChar.url} onClick={this.handleBtnClick}>
                                         {povChar.name}

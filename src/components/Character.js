@@ -146,48 +146,48 @@ class Character extends React.Component {
             <div>
                 {type === 'character' ?
                     (<div>
-                        <div>
-                            <b>Name:</b>{info.name ? info.name : info.aliases[0]}
+                        <div className='info-row'>
+                            ><b>Name: </b>{info.name ? info.name : info.aliases[0]}
                         </div>
                         {info.gender ? 
-                            (<div>
-                                <b>Gender:</b>{info.gender}
+                            (<div className='info-row'>
+                                ><b>Gender: </b>{info.gender}
                             </div>) 
                         : ''}
                         {info.culture ? 
-                            (<div>
-                                <b>Culture:</b>{info.culture}
+                            (<div className='info-row'>
+                                ><b>Culture: </b>{info.culture}
                             </div>) 
                         : ''}
                         {info.born ? 
-                            (<div>
-                                <b>Born:</b>{info.born}
+                            (<div className='info-row'>
+                                ><b>Born: </b>{info.born}
                             </div>) 
                         : ''}
                         {info.died ? 
-                            (<div>
-                                <b>Died:</b>{info.died}
+                            (<div className='info-row'>
+                                ><b>Died: </b>{info.died}
                             </div>) 
                         : ''}
                         {info.titles[0] !== '' ? 
-                            (<div>
-                                <b>Titles:</b>
+                            (<div className='info-row'>
+                                ><b>Titles: </b>
                                 {info.titles.map((title) => (
                                     <span>{title}, </span>
                                 ))}
                             </div>) 
                         : ''}
                         {info.aliases[0] !== '' ? 
-                            (<div>
-                                <b>Aliases:</b>
+                            (<div className='info-row'>
+                                ><b>Aliases: </b>
                                 {info.aliases.map((alias) => (
                                     <span>{alias}, </span>
                                 ))}
                             </div>) 
                         : ''}
                         {father.length > 0 ? 
-                            (<div>
-                                <b>Father:</b>
+                            (<div className='info-row'>
+                                ><b>Father: </b>
                                 {father.map((f) => (
                                     <button name='character' value={f.url} onClick={this.handleBtnClick}>
                                         {f.name}
@@ -196,8 +196,8 @@ class Character extends React.Component {
                             </div>)
                         : ''}
                         {mother.length > 0 ? 
-                            (<div>
-                                <b>Mother:</b>
+                            (<div className='info-row'>
+                                ><b>Mother: </b>
                                 {mother.map((m) => (
                                     <button name='character' value={m.url} onClick={this.handleBtnClick}>
                                         {m.name}
@@ -206,8 +206,8 @@ class Character extends React.Component {
                             </div>)
                         : ''}
                         {spouse.length > 0 ? 
-                            (<div>
-                                <b>Spouse:</b>
+                            (<div className='info-row'>
+                                ><b>Spouse: </b>
                                 {spouse.map((s) => (
                                     <button name='character' value={s.url} onClick={this.handleBtnClick}>
                                         {s.name}
@@ -216,8 +216,8 @@ class Character extends React.Component {
                             </div>)
                         : ''}
                         {allegiances.length > 0 ? 
-                            (<div>
-                                <b>Allegiances:</b>
+                            (<div className='info-row'>
+                                ><b>Allegiances: </b>
                                 {allegiances.map((allegiance) => (
                                     <button name='house' value={allegiance.url} onClick={this.handleBtnClick}>
                                         {allegiance.name}
@@ -226,8 +226,8 @@ class Character extends React.Component {
                             </div>) 
                         : ''}
                         {books.length > 0 ? 
-                            (<div>
-                                <b>Books:</b>
+                            (<div className='info-row'>
+                                ><b>Books: </b>
                                 {books.map((book) => (
                                     <button name='book' value={book.url} onClick={this.handleBtnClick}>
                                         {book.name}
@@ -236,8 +236,8 @@ class Character extends React.Component {
                             </div>) 
                         : ''}
                         {povBooks.length > 0 ? 
-                            (<div>
-                                <b>Pov Books:</b>
+                            (<div className='info-row'>
+                                ><b>Pov Books: </b>
                                 {povBooks.map((povBook) => (
                                     <button name='book' value={povBook.url} onClick={this.handleBtnClick}>
                                         {povBook.name}
@@ -246,16 +246,16 @@ class Character extends React.Component {
                             </div>) 
                         : ''}
                         {info.tvSeries[0] !== '' ? 
-                            (<div>
-                                <b>TV Series:</b>
+                            (<div className='info-row'>
+                                ><b>TV Series: </b>
                                 {info.tvSeries.map((tv) => (
                                     <span>{tv}, </span>
                                 ))}
                             </div>) 
                         : ''}
                         {info.playedBy[0] !== '' ? 
-                            (<div>
-                                <b>Played By:</b>
+                            (<div className='info-row'>
+                                ><b>Played By: </b>
                                 {info.playedBy.map((actor) => (
                                     <span>{actor}, </span>
                                 ))}
