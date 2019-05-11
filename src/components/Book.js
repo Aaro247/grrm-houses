@@ -21,29 +21,31 @@ class Book extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if(prevProps.data !== this.props.data) {
-            this.setState({ info: this.props.data });
+            this.setState({ info: this.props.data, type: this.props.type });
             this.updateComponent();
         }
     }
 
     updateComponent = () => {
         const info = this.props.data;
-        console.log(info);
+        const type = this.props.type;
 
-        if(info.characters.length > 0) {
-            allCharacters = [];
-            for(let i = 0; i < info.characters.length; i++) {
-                fetch(info.characters[i])
-                    .then(res => res.json())
-                    .then(data => this.setCharacterData(data));
+        if(type === 'book') {
+            if(info.characters.length > 0) {
+                allCharacters = [];
+                for(let i = 0; i < info.characters.length; i++) {
+                    fetch(info.characters[i])
+                        .then(res => res.json())
+                        .then(data => this.setCharacterData(data));
+                }
             }
-        }
 
-        if(info.povCharacters.length > 0) {
-            for(let i = 0; i < info.povCharacters.length; i++) {
-                fetch(info.povCharacters[i])
-                    .then(res => res.json())
-                    .then(data => this.setPovCharacterData(data.name));
+            if(info.povCharacters.length > 0) {
+                for(let i = 0; i < info.povCharacters.length; i++) {
+                    fetch(info.povCharacters[i])
+                        .then(res => res.json())
+                        .then(data => this.setPovCharacterData(data.name));
+                }
             }
         }
     }
@@ -141,7 +143,7 @@ class Book extends React.Component {
                     </div>) 
                 : ''}
                 {type === 'character' ?
-                    <Character data = {info} />
+                    <Character data = {info} type = {type} />
                 : ''}
             </div>
         )

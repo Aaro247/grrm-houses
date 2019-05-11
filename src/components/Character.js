@@ -1,5 +1,10 @@
 import React from 'react';
 import Book from './Book';
+import House from './House';
+
+let allAllegiances = [];
+let allBooks = [];
+let allPovBooks = [];
 
 class Character extends React.Component {
     constructor(props) {
@@ -22,15 +27,16 @@ class Character extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if(prevProps.data !== this.props.data) {
-            this.setState({ info: this.props.data});
+            this.setState({ info: this.props.data, type: this.props.type});
             this.updateComponent();
         }
     } 
 
     updateComponent = () => {
         const info = this.props.data;
+        const type = this.props.type;
 
-        if(this.state.type === 'character') {
+        if(type === 'character') {
             if(info.father !== '') {
                 fetch(info.father)
                     .then(res => res.json())
@@ -50,39 +56,27 @@ class Character extends React.Component {
             }
 
             if(info.allegiances.length > 0) {
-                let allegiances = [];
-
                 for(let i = 0; i < info.allegiances.length; i++) {
                     fetch(info.allegiances[i])
                         .then(res => res.json())
-                        .then(data => allegiances.push(data.name));
+                        .then(data => this.setAllegiancesData(data));
                 }
-                
-                this.setState({ allegiances: allegiances });
             }
 
             if(info.books.length > 0) {
-                let books = [];
-
                 for(let i = 0; i < info.books.length; i++) {
                     fetch(info.books[i])
                         .then(res => res.json())
-                        .then(data => books.push(data.name));
+                        .then(data => this.setBooksData(data));
                 }
-                
-                this.setState({ books: books });
             }
 
             if(info.povBooks.length > 0) {
-                let povBooks = [];
-
                 for(let i = 0; i < info.povBooks.length; i++) {
                     fetch(info.povBooks[i])
                         .then(res => res.json())
-                        .then(data => povBooks.push(data.name));
+                        .then(data => this.setPovBooksData(data));
                 }
-                
-                this.setState({ povBooks: povBooks });
             }
         }
     }
@@ -114,6 +108,30 @@ class Character extends React.Component {
         this.setState({ spouse: spouse });
     }
 
+    setAllegiancesData = (data) => {
+        let allegianceObj = {};
+        allegianceObj.name = data.name;
+        allegianceObj.url = data.url;
+        allAllegiances.push(allegianceObj);
+        this.setState({ allegiances: allAllegiances });
+    }
+
+    setBooksData = (data) => {
+        let bookObj = {};
+        bookObj.name = data.name;
+        bookObj.url = data.url;
+        allBooks.push(bookObj);
+        this.setState({ books: allBooks });
+    }
+
+    setPovBooksData = (data) => {
+        let povBookObj = {};
+        povBookObj.name = data.name;
+        povBookObj.url = data.url;
+        allPovBooks.push(povBookObj);
+        this.setState({ povBooks: allPovBooks });
+    }
+
     handleBtnClick = (e) => {
         let type = e.target.name;
         fetch(e.target.value)
@@ -123,6 +141,7 @@ class Character extends React.Component {
 
     render() {
         const { info, father, mother, spouse, allegiances, books, povBooks, type } = this.state;
+        console.log(allegiances);
         return (
             <div>
                 {type === 'character' ?
@@ -200,7 +219,9 @@ class Character extends React.Component {
                             (<div>
                                 <b>Allegiances:</b>
                                 {allegiances.map((allegiance) => (
-                                    <span>{allegiance}, </span>
+                                    <button name='house' value={allegiance.url} onClick={this.handleBtnClick}>
+                                        {allegiance.name}
+                                    </button>
                                 ))}
                             </div>) 
                         : ''}
@@ -208,7 +229,9 @@ class Character extends React.Component {
                             (<div>
                                 <b>Books:</b>
                                 {books.map((book) => (
-                                    <span>{book}, </span>
+                                    <button name='book' value={book.url} onClick={this.handleBtnClick}>
+                                        {book.name}
+                                    </button>
                                 ))}
                             </div>) 
                         : ''}
@@ -216,7 +239,9 @@ class Character extends React.Component {
                             (<div>
                                 <b>Pov Books:</b>
                                 {povBooks.map((povBook) => (
-                                    <span>{povBook}, </span>
+                                    <button name='book' value={povBook.url} onClick={this.handleBtnClick}>
+                                        {povBook.name}
+                                    </button>
                                 ))}
                             </div>) 
                         : ''}
@@ -239,7 +264,10 @@ class Character extends React.Component {
                     </div>)
                 : ''}
                 {type === 'book' ?
-                    <Book data = {info} />
+                    <Book data = {info} type={type} />
+                : ''}
+                {type === 'house' ?
+                    <House data = {info} type={type} />
                 : ''}
             </div>
         )

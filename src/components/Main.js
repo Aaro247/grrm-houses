@@ -142,15 +142,15 @@ class Main extends React.Component {
                     </div>
                     <div id='info'>
                         {currentInfo && type === 'house' ?
-                            <House data = {currentInfo} />
+                            <House data = {currentInfo} type = {type} />
                             : ''
                         }
                         {currentInfo && type === 'character' ?
-                            <Character data = {currentInfo} />
+                            <Character data = {currentInfo} type = {type} />
                             : ''
                         }
                         {currentInfo && type === 'book' ?
-                            <Book data = {currentInfo} />
+                            <Book data = {currentInfo} type = {type} />
                             : ''
                         }
                     </div>
