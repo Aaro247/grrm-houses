@@ -17,7 +17,7 @@ class Main extends React.Component {
             filteredBooks: [],
             currentInfo: [],
             searchText: '',
-            infoType: ''
+            type: ''
         }
     }
 
@@ -80,13 +80,14 @@ class Main extends React.Component {
     handleBtnClick = (e) => {
         //e.preventDefault();
         let infoType = e.target.name;
+        console.log(infoType);
         fetch(e.target.value)
             .then(res => res.json())
-            .then(data => this.setState({currentInfo: data, infoType: infoType}));
+            .then(data => this.setState({currentInfo: data, type: infoType}));
     }
 
     render() {
-        const { searchText, currentInfo, filteredBooks, filteredCharacters, filteredHouses, infoType } = this.state;
+        const { searchText, currentInfo, filteredBooks, filteredCharacters, filteredHouses, type } = this.state;
         return (
             <div>
                 <div className='search-bar'>
@@ -140,15 +141,15 @@ class Main extends React.Component {
                         </div>
                     </div>
                     <div id='info'>
-                        {currentInfo && infoType === 'house' ?
+                        {currentInfo && type === 'house' ?
                             <House data = {currentInfo} />
                             : ''
                         }
-                        {currentInfo && infoType === 'character' ?
+                        {currentInfo && type === 'character' ?
                             <Character data = {currentInfo} />
                             : ''
                         }
-                        {currentInfo && infoType === 'book' ?
+                        {currentInfo && type === 'book' ?
                             <Book data = {currentInfo} />
                             : ''
                         }
