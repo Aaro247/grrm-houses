@@ -15,6 +15,18 @@ class House extends React.Component {
     }
 
     componentDidMount() {
+        this.updateComponent();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.data !== this.props.data) {
+            this.setState({ info: this.props.data});
+            this.updateComponent();
+        }
+    } 
+
+    
+    updateComponent = () => {
         const { info } = this.state;
 
         if(info.currentLord !== '') {
