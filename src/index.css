@@ -28,20 +28,26 @@ input[type=text] {
   box-sizing: border-box;
 }
 
+#cols {
+  display: flex;
+  flex-direction: row;
+}
+
 #grid {
   display: flex;
   flex-direction: column;
-  padding-left: 50px;
+  padding-left: 150px;
 }
 
 .grid-col {
   padding: 5px;
-  width: 200px;
+  width: 250px;
 }
 
 .scroll {
   max-height: 150px;
   overflow: scroll;
+  border: 1px solid black;
 }
 
 ::-webkit-scrollbar {
@@ -53,6 +59,19 @@ input[type=text] {
   border-radius: 5px;
   background-color: rgba(0,0,0,.5);
   -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+button {
+  background:none!important;
+  border:none; 
+  padding:0!important;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+#info {
+  padding: 150px;
 }
 
 #footer {
