@@ -4,6 +4,7 @@ import actions from '../actions/action';
 import House from './House';
 import Character from './Character';
 import Book from './Book';
+import mainImg from '../images/main-img.jpg';
 
 class Main extends React.Component {
     constructor() {
@@ -80,7 +81,6 @@ class Main extends React.Component {
     handleBtnClick = (e) => {
         //e.preventDefault();
         let infoType = e.target.name;
-        console.log(infoType);
         fetch(e.target.value)
             .then(res => res.json())
             .then(data => this.setState({currentInfo: data, type: infoType}));
@@ -88,7 +88,6 @@ class Main extends React.Component {
 
     render() {
         const { searchText, currentInfo, filteredBooks, filteredCharacters, filteredHouses, type } = this.state;
-        console.log(type);
         return (
             <div>
                 <div className='search-bar'>
@@ -106,11 +105,14 @@ class Main extends React.Component {
                             <fieldset>
                                 <legend><h3>Houses</h3></legend>
                                 <div className='scroll'>
-                                    <ul>
-                                        {filteredHouses.map((house) => (
-                                            <li key={house.name}><button name='house' value={house.url} onClick={this.handleBtnClick}>{house.name}</button></li>
-                                        ))}
-                                    </ul>
+                                    {filteredHouses.length > 0 ?
+                                        (<ul>
+                                            {filteredHouses.map((house) => (
+                                                <li key={house.name}><button name='house' value={house.url} onClick={this.handleBtnClick}>{house.name}</button></li>
+                                            ))}
+                                        </ul>)
+                                        : <div className='scroll-text'>No data to display</div>
+                                    }
                                 </div>
                             </fieldset>
                         </div>
@@ -118,15 +120,18 @@ class Main extends React.Component {
                             <fieldset>
                                 <legend><h3>Characters</h3></legend>
                                 <div className='scroll'>
-                                    <ul>
-                                        {filteredCharacters.map((character) => (
-                                            <li key={character.url}>
-                                                <button name='character' value={character.url} onClick={this.handleBtnClick}>
-                                                    {character.name ? character.name : character.aliases[0]}
-                                                </button>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    {filteredCharacters.length > 0 ?
+                                        (<ul>
+                                            {filteredCharacters.map((character) => (
+                                                <li key={character.url}>
+                                                    <button name='character' value={character.url} onClick={this.handleBtnClick}>
+                                                        {character.name ? character.name : character.aliases[0]}
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>)
+                                        : <div className='scroll-text'>No data to display</div>
+                                    }
                                 </div>
                             </fieldset>
                         </div>
@@ -134,15 +139,18 @@ class Main extends React.Component {
                             <fieldset>
                                 <legend><h3>Books</h3></legend>
                                 <div className='scroll'>
-                                    <ul>
-                                        {filteredBooks.map((book) => (
-                                            <li key={book.name}>
-                                                <button name='book' value={book.url} onClick={this.handleBtnClick}>
-                                                    {book.name}
-                                                </button>        
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    {filteredBooks.length > 0 ?
+                                        (<ul>
+                                            {filteredBooks.map((book) => (
+                                                <li key={book.name}>
+                                                    <button name='book' value={book.url} onClick={this.handleBtnClick}>
+                                                        {book.name}
+                                                    </button>        
+                                                </li>
+                                            ))}
+                                        </ul>)
+                                        : <div className='scroll-text'>No data to display</div>
+                                    }
                                 </div>
                             </fieldset>
                         </div>
@@ -162,7 +170,10 @@ class Main extends React.Component {
                                 : ''
                             }
                         </div>) 
-                        : <h2> Select a House/Character/Book</h2>
+                        : <div>
+                            <h2> Select a House/Character/Book</h2>
+                            <img className='img' src={mainImg} height='400px' width='400px' alt='song-of-fire-and-ice' />
+                        </div>
                     }
                 </div>
             </div>

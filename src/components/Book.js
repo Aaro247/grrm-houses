@@ -29,6 +29,8 @@ class Book extends React.Component {
     updateComponent = () => {
         const info = this.props.data;
         const type = this.props.type;
+        allCharacters = [];
+        allPovCharacters = [];
 
         if(type === 'book') {
             if(info.characters.length > 0) {
@@ -70,7 +72,14 @@ class Book extends React.Component {
         let type = e.target.name;
         fetch(e.target.value)
             .then(res => res.json())
-            .then(data => this.setState({info: data, type: type}));
+            .then(data => {
+                if(type === 'book') {
+                    this.setState({info: data, type: type});
+                    this.updateComponent(data);
+                }
+                else
+                    this.setState({info: data, type: type});
+            });
     }
 
     render() {

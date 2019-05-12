@@ -2,6 +2,9 @@ import React from 'react';
 import Book from './Book';
 import House from './House';
 
+let father = [];
+let mother = [];
+let spouse = [];
 let allAllegiances = [];
 let allBooks = [];
 let allPovBooks = [];
@@ -22,19 +25,25 @@ class Character extends React.Component {
     }
 
     componentDidMount() {
-        this.updateComponent();
+        this.updateComponent(this.props.data);
     }
 
     componentDidUpdate(prevProps, prevState) {
         if(prevProps.data !== this.props.data) {
             this.setState({ info: this.props.data, type: this.props.type});
-            this.updateComponent();
+            this.updateComponent(this.props.data);
         }
     } 
 
-    updateComponent = () => {
-        const info = this.props.data;
+    updateComponent = (data) => {
+        const info = data;
         const type = this.props.type;
+        father = [];
+        mother = [];
+        spouse = [];
+        allAllegiances = [];
+        allBooks = [];
+        allPovBooks = [];
 
         if(type === 'character') {
             if(info.father !== '') {
@@ -83,7 +92,6 @@ class Character extends React.Component {
 
     setFatherData = (data) => {
         let fatherObj = {};
-        let father = [];
         fatherObj.name = data.name;
         fatherObj.url = data.url;
         father.push(fatherObj);
@@ -92,7 +100,6 @@ class Character extends React.Component {
 
     setMotherData = (data) => {
         let motherObj = {};
-        let mother = [];
         motherObj.name = data.name;
         motherObj.url = data.url;
         mother.push(motherObj);
@@ -101,7 +108,6 @@ class Character extends React.Component {
 
     setSpouseData = (data) => {
         let spouseObj = {};
-        let spouse = [];
         spouseObj.name = data.name;
         spouseObj.url = data.url;
         spouse.push(spouseObj);
@@ -136,12 +142,18 @@ class Character extends React.Component {
         let type = e.target.name;
         fetch(e.target.value)
             .then(res => res.json())
-            .then(data => this.setState({info: data, type: type}));
+            .then(data => {
+                if(type === 'character') {
+                    this.setState({info: data, type: type});
+                    this.updateComponent(data);
+                }
+                else
+                    this.setState({info: data, type: type});
+            });
     }
 
     render() {
         const { info, father, mother, spouse, allegiances, books, povBooks, type } = this.state;
-        console.log(allegiances);
         return (
             <div>
                 {type === 'character' ?
@@ -173,7 +185,7 @@ class Character extends React.Component {
                             (<div className='info-row'>
                                 ><b>Titles: </b>
                                 {info.titles.map((title) => (
-                                    <span>{title}, </span>
+                                    <div className='blah'>{title}</div>
                                 ))}
                             </div>) 
                         : ''}

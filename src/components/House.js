@@ -1,6 +1,10 @@
 import React from 'react';
 import Character from './Character';
 
+let currentLord = [];
+let heir = [];
+let overlord = [];
+let founder = [];
 let allCadetBranches = [];
 let allSwornMembers = [];
 
@@ -34,6 +38,12 @@ class House extends React.Component {
     updateComponent = () => {
         const info = this.props.data;
         const type = this.props.type;
+        currentLord = [];
+        heir = [];
+        overlord = [];
+        founder = [];
+        allCadetBranches = [];
+        allSwornMembers = [];
 
         if(type === 'house') {
             if(info.currentLord !== '') {
@@ -41,11 +51,17 @@ class House extends React.Component {
                     .then(res => res.json())
                     .then(data => this.setCurrentLordData(data));
             }
+            else {
+                this.setState({currentLord: ''});
+            }
 
             if(info.heir !== '') {
                 fetch(info.heir)
                     .then(res => res.json())
                     .then(data => this.setHeirData(data));
+            }
+            else {
+                this.setState({heir: ''});
             }
 
             if(info.overlord !== '') {
@@ -53,11 +69,17 @@ class House extends React.Component {
                     .then(res => res.json())
                     .then(data => this.setOverlordData(data));
             }
+            else {
+                this.setState({overlord: ''});
+            }
 
             if(info.founder !== '') {
                 fetch(info.founder)
                     .then(res => res.json())
                     .then(data => this.setFounderData(data));
+            }
+            else {
+                this.setState({founder: ''});
             }
 
             if(info.cadetBranches.length > 0) {
@@ -67,6 +89,9 @@ class House extends React.Component {
                         .then(data => this.setCadetBranchData(data));
                 }
             }
+            else {
+                this.setState({cadetBranches: []});
+            }
 
             if(info.swornMembers.length > 0) {
                 for(let i = 0; i < info.swornMembers.length; i++) {
@@ -75,12 +100,14 @@ class House extends React.Component {
                         .then(data => this.setSwornMemberData(data));
                 }
             }
+            else {
+                this.setState({swornMembers: []});
+            }
         }
     }
 
     setCurrentLordData = (data) => {
         let currentLordObj = {};
-        let currentLord = [];
         currentLordObj.name = data.name;
         currentLordObj.url = data.url;
         currentLord.push(currentLordObj);
@@ -89,16 +116,14 @@ class House extends React.Component {
 
     setHeirData = (data) => {
         let heirObj = {};
-        let heir = [];
         heirObj.name = data.name;
         heirObj.url = data.url;
-        heir.push(heir);
+        heir.push(heirObj);
         this.setState({ heir: heir });
     }
 
     setOverlordData = (data) => {
         let overlordObj = {};
-        let overlord = [];
         overlordObj.name = data.name;
         overlordObj.url = data.url;
         overlord.push(overlordObj);
@@ -107,7 +132,6 @@ class House extends React.Component {
 
     setFounderData = (data) => {
         let founderObj = {};
-        let founder = [];
         founderObj.name = data.name;
         founderObj.url = data.url;
         founder.push(founderObj);
@@ -134,7 +158,14 @@ class House extends React.Component {
         let type = e.target.name;
         fetch(e.target.value)
             .then(res => res.json())
-            .then(data => this.setState({info: data, type: type}));
+            .then(data => {
+                if(type === 'house') {
+                    this.setState({info: data, type: type});
+                    this.updateComponent(data);
+                }
+                else
+                    this.setState({info: data, type: type});
+            });
     }
 
     render() {

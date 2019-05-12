@@ -1,5 +1,5 @@
 html {
-  background-image: url('images/background.jpg');
+  background-image: url('images/background-img.jpg');
 }
 
 body {
@@ -21,8 +21,12 @@ h2 {
   color: white;
 }
 
+.blah {
+  float: right;
+}
+
 h2::before {
-  content: '<---';
+  content: '<--';
 }
 
 #header {
@@ -41,9 +45,8 @@ h2::before {
         0 -2px 0 #000,
         -2px 0 0 #000,
         2px 2px 5px #000;
-  background-image: url('images/fire-n-ice.jpeg');
+  background-image: url('images/header-img.jpeg');
 }
-
 
 .search-bar {
   display: flex;
@@ -51,10 +54,16 @@ h2::before {
 }
 
 input[type=text] {
-  width: 60%;
-  padding: 12px 20px;
+  width: 80%;
+  padding: 20px 20px;
   margin: 8px 0;
   box-sizing: border-box;
+  font-size: 20px;
+}
+
+.img {
+  text-align: center;
+  padding-left: 250px;
 }
 
 #cols {
@@ -73,7 +82,7 @@ input[type=text] {
 }
 
 .grid-col {
-  margin: 10px;
+  margin: 20px;
   width: 250px;
   padding: 0px 5px 5px 5px;
   background-color: white;
@@ -82,6 +91,10 @@ input[type=text] {
 .scroll {
   max-height: 200px;
   overflow: scroll;
+}
+
+.scroll-text {
+  text-align: center;
 }
 
 ::-webkit-scrollbar {
