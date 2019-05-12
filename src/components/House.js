@@ -197,7 +197,7 @@ class House extends React.Component {
                             (<div className='info-row'>
                                 ><b>Titles: </b>
                                 {info.titles.map((title) => (
-                                    <span>{title}</span>
+                                    <div className='info-text'>{title}</div>
                                 ))}
                             </div>) 
                         : ''}
@@ -205,7 +205,7 @@ class House extends React.Component {
                             (<div className='info-row'>
                                 ><b>Seats: </b>
                                 {info.seats.map((seat) => (
-                                    <span>{seat}, </span>
+                                    <div className='info-text'>{seat}</div>
                                 ))}
                             </div>) 
                         : ''}
@@ -263,7 +263,7 @@ class House extends React.Component {
                             (<div className='info-row'>
                                 ><b>Ancestral Weapons: </b>
                                 {info.ancestralWeapons.map((weapon) => (
-                                    <span>{weapon}, </span>
+                                    <div className='info-text'>{weapon}</div>
                                 ))}
                             </div>) 
                         : ''}

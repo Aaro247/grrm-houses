@@ -185,7 +185,7 @@ class Character extends React.Component {
                             (<div className='info-row'>
                                 ><b>Titles: </b>
                                 {info.titles.map((title) => (
-                                    <div className='blah'>{title}</div>
+                                    <div className='info-text'>{title}</div>
                                 ))}
                             </div>) 
                         : ''}
@@ -193,7 +193,7 @@ class Character extends React.Component {
                             (<div className='info-row'>
                                 ><b>Aliases: </b>
                                 {info.aliases.map((alias) => (
-                                    <span>{alias}, </span>
+                                    <div className='info-text'>{alias}</div>
                                 ))}
                             </div>) 
                         : ''}
@@ -261,7 +261,7 @@ class Character extends React.Component {
                             (<div className='info-row'>
                                 ><b>TV Series: </b>
                                 {info.tvSeries.map((tv) => (
-                                    <span>{tv}, </span>
+                                    <div className='info-text'>{tv}</div>
                                 ))}
                             </div>) 
                         : ''}
@@ -269,7 +269,7 @@ class Character extends React.Component {
                             (<div className='info-row'>
                                 ><b>Played By: </b>
                                 {info.playedBy.map((actor) => (
-                                    <span>{actor}, </span>
+                                    <div className='info-text'>{actor}</div>
                                 ))}
                             </div>) 
                         : ''}

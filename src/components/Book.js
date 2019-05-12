@@ -100,7 +100,7 @@ class Book extends React.Component {
                             (<div className='info-row'>
                                 ><b>Authors: </b>
                                 {info.authors.map((author) => (
-                                    <span>{author}, </span>
+                                    <span>{author}</span>
                                 ))}
                             </div>) 
                         : ''}
